@@ -2,8 +2,8 @@
 Contributors: pauldewouters
 Tags: archives, widget
 Requires at least: 3.0
-Tested up to: 4.0
-Stable tag: 2.1.2
+Tested up to: 4.4
+Stable tag: 2.2
 
 Adds an extra widget to display links to archives grouped by year then by month.
 
@@ -31,6 +31,12 @@ See http://style.org/unladenswallow/
 2. View of the widget on the front end of the site, with the year expanded to reveal months
 
 == Changelog ==
+
+= 2.2 =
+
+* Added internationalization
+* Added escaping
+* Fixes and improvments.
 
 = 2.1 =
 * Removed CSS file and minified js
