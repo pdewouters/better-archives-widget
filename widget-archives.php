@@ -17,7 +17,7 @@ class baw_widgetarchives_widget_my_archives extends WP_Widget {
 			'classname' => 'baw_widgetarchives_widget_class',
 			'description' => 'Display links to archives grouped by year then month.'
 		);
-		$this->WP_Widget( 'baw_widgetarchives_widget_my_archives', 'Custom Archives Widget', $widget_ops );
+		parent::__construct( 'baw_widgetarchives_widget_my_archives', __( 'Custom Archives Widget', 'better-archives-widget' ), $widget_ops );
 	}
 
 	//build the widget settings form
