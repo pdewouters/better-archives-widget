@@ -52,7 +52,18 @@ class Baw_Widgetarchives_Widget_My_Archives extends WP_Widget {
 		global $wpdb;
 		$prevYear    = '';
 		$currentYear = '';
-		if ( $months = $wpdb->get_results( "SELECT DISTINCT DATE_FORMAT(post_date, '%b') AS month , MONTH(post_date) as numMonth, YEAR( post_date ) AS year, COUNT( id ) as post_count FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now() and post_type = 'post' GROUP BY month , year ORDER BY post_date DESC" ) ) {
+
+		/**
+		 * Filter the SQL WHERE clause for retrieving archives.
+		 */
+		$where = apply_filters( 'getarchives_where', "WHERE post_type = 'post' AND post_status = 'publish' AND post_date <= now()" );
+
+		/**
+		 * Filter the SQL JOIN clause for retrieving archives.
+		 */
+		$join = apply_filters( 'getarchives_join', '' );
+
+		if ( $months = $wpdb->get_results( "SELECT YEAR(post_date) AS year, MONTH(post_date) AS numMonth, DATE_FORMAT(post_date, '%M') AS month, count(ID) as post_count FROM $wpdb->posts $join $where GROUP BY YEAR(post_date), MONTH(post_date) ORDER BY post_date DESC" ) ) {
 			echo '<ul>';
 			foreach ( $months as $month ) {
 				$currentYear = $month->year;
